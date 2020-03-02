@@ -1,4 +1,6 @@
+import textwrap
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +51,35 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+derrick = Player(room['outside'])
+current_room = room['outside']
+quit = False
+
+while quit is False:
+    print(f'Current Room: {derrick.current_room}')
+    print(
+        f'Description: {textwrap.wrap(current_room.description)}')
+
+    command = input(
+        '\nWhat do you want to do???\n(E)xplore Current Room\n(G)o to new Room\n(Q)uit\n\n\n')
+    if command == '':
+        continue
+
+    command = command.strip().lower()[0]
+
+    if command == 'q':
+        quit = True
+
+    elif command == 'e':
+        print("There's nothing here to be found")
+
+    elif command == 'g':
+        direction = input(
+            '\nWhich Direction Do you want to go???\n(n)orth\n(e)ast\n(s)outh\n(w)est\n\n\n')
+        direction = direction.strip().lower()[0] +"_to"
+        print(f"You have chosen to go {direction}")
+
+        other_room = getattr(current_room, direction)
+        current_room = derrick.current_room = other_room
+        print(f"derrick's current room: {derrick.current_room}")
