@@ -76,10 +76,24 @@ while quit is False:
 
     elif command == 'g':
         direction = input(
-            '\nWhich Direction Do you want to go???\n(n)orth\n(e)ast\n(s)outh\n(w)est\n\n\n')
+            '\nWhich Direction Do you want to go???\n(n)orth\n(e)ast\n(s)outh\n(w)est\n(q)uit\n\n\n')
+
+        while direction not in ('n', 's', 'e', 'w', 'q'):
+            print('*** Please choose valid cardinal direction or q for quit***')
+            direction = input(
+                '\nWhich Direction Do you want to go???\n(n)orth\n(e)ast\n(s)outh\n(w)est\n(q)uit\n\n\n')
+
+        if direction == 'q':
+            quit = True
+            continue
+
         direction = direction.strip().lower()[0] +"_to"
         print(f"You have chosen to go {direction}")
 
         other_room = getattr(current_room, direction)
-        current_room = derrick.current_room = other_room
-        print(f"derrick's current room: {derrick.current_room}")
+
+        if other_room is None:
+            print("a room doesn't exist in that direction")
+        else:
+            current_room = derrick.current_room = other_room
+            print(f"derrick's current room: {derrick.current_room}")
