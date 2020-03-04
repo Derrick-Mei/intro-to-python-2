@@ -63,7 +63,7 @@ room['overlook'].add_item(sword)
 room['narrow'].add_item(magic_ring)
 room['treasure'].add_item(treasure)
 
-derrick = Player(room['outside'])
+derrick = Player(room['outside'], 100)
 current_room = room['outside']
 quit = False
 
