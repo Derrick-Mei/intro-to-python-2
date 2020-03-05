@@ -57,6 +57,9 @@ sword = Item("sword", 10, 0)
 shield = Item("shield", 0, 10)
 magic_ring = Item("magic_ring", 5, 5)
 
+room['outside'].add_item(shield)
+room['overlook'].add_item(sword)
+room['narrow'].add_item(magic_ring)
 
 derrick = Player(room['outside'])
 current_room = room['outside']
