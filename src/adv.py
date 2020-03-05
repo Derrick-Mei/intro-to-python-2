@@ -1,6 +1,7 @@
 import textwrap
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -51,6 +52,11 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+sword = Item("sword", 10, 0)
+shield = Item("shield", 0, 10)
+magic_ring = Item("magic_ring", 5, 5)
+
 
 derrick = Player(room['outside'])
 current_room = room['outside']
