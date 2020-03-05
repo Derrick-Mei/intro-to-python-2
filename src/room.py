@@ -6,7 +6,7 @@ class Room():
     def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.items = {"knife":"damascus"}
+        self.items = {}
 
         self.n_to = None
         self.e_to = None
@@ -20,7 +20,7 @@ class Room():
         return f"{self.__class__.__name__}({repr(self.name)}, {repr(self.description)})"
 
     def add_item(self, item):
-        self.items[item] = item
+        self.items[item.name] = item
 
     def remove_item(self, item):
-        self.items.pop(item, None)
+        self.items.pop(item.name, None)

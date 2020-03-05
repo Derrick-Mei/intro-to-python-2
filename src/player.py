@@ -8,7 +8,7 @@ class Player:
         self.items = {}
 
     def add_item(self, item):
-        self.items[item] = item
+        self.items[item.name] = item
 
     def remove_item(self, item):
-        self.items.pop(item, None)
+        self.items.pop(item.name, None)
