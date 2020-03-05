@@ -56,10 +56,12 @@ room['treasure'].s_to = room['narrow']
 sword = Item("sword", 10, 0)
 shield = Item("shield", 0, 10)
 magic_ring = Item("magic_ring", 5, 5)
+treasure = Item('treasure', 0, 0)
 
 room['outside'].add_item(shield)
 room['overlook'].add_item(sword)
 room['narrow'].add_item(magic_ring)
+room['treasure'].add_item(treasure)
 
 derrick = Player(room['outside'])
 current_room = room['outside']
@@ -69,6 +71,9 @@ while quit is False:
     print(f'\n\nCurrent Room: {derrick.current_room}')
     print(
         f'Description: {textwrap.wrap(current_room.description)}')
+
+    if current_room.name == 'Treasure Chamber':
+        print("***** YOU HAVE FOUND THE TREASURE ROOM *****")
 
     command = input(
         '\nWhat do you want to do???\n(E)xplore Current Room\n(G)o to new Room\n(I)nspect Inventory\n(Q)uit\n\n\n')
@@ -120,13 +125,17 @@ while quit is False:
             current_room = derrick.current_room = other_room
             print(f"derrick's current room: {derrick.current_room}")
 
-    elif command = 'i':
-        for key, value in derrick.items.items():
-            print(f"You are carrying a {key}")
-            command = input('What do you want to do with your item?\n(d)rop it\n(n)othing\n')
+    elif command == 'i':
 
-            if command = 'd':
-                current_room.add_item(value)
+        if not derrick.items:
+            print("You don't have any items")
+        else:
+            for key, value in derrick.items.items():
+                print(f"You are carrying a {key}")
+                command = input('What do you want to do with your item?\n(d)rop it\n(n)othing\n')
 
-        for key, value in current_room.items.items():
-            derrick.remove_item(value)
+                if command == 'd':
+                    current_room.add_item(value)
+
+            for key, value in current_room.items.items():
+                derrick.remove_item(value)
