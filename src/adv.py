@@ -120,3 +120,13 @@ while quit is False:
             current_room = derrick.current_room = other_room
             print(f"derrick's current room: {derrick.current_room}")
 
+    elif command = 'i':
+        for key, value in derrick.items.items():
+            print(f"You are carrying a {key}")
+            command = input('What do you want to do with your item?\n(d)rop it\n(n)othing\n')
+
+            if command = 'd':
+                current_room.add_item(value)
+
+        for key, value in current_room.items.items():
+            derrick.remove_item(value)
