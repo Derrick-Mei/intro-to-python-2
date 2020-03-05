@@ -66,12 +66,12 @@ current_room = room['outside']
 quit = False
 
 while quit is False:
-    print(f'Current Room: {derrick.current_room}')
+    print(f'\n\nCurrent Room: {derrick.current_room}')
     print(
         f'Description: {textwrap.wrap(current_room.description)}')
 
     command = input(
-        '\nWhat do you want to do???\n(E)xplore Current Room\n(G)o to new Room\n(Q)uit\n\n\n')
+        '\nWhat do you want to do???\n(E)xplore Current Room\n(G)o to new Room\n(I)nspect Inventory\n(Q)uit\n\n\n')
     if command == '':
         continue
 
@@ -81,7 +81,20 @@ while quit is False:
         quit = True
 
     elif command == 'e':
-        print("There's nothing here to be found")
+
+        if not current_room.items:
+            print("There's nothing here to be found")
+        else:
+            for key, value in current_room.items.items():
+                print(f"You have found a {key} do you want to pick it up?")
+
+                i_want = input('***\n(y)es\n(n)o\n***')
+                i_want = i_want.strip().lower()[0]
+                if i_want == 'y':
+                    derrick.add_item(value)
+            for key, value in derrick.items.items():
+                current_room.remove_item(value)
+
 
     elif command == 'g':
         direction = input(
@@ -106,3 +119,4 @@ while quit is False:
         else:
             current_room = derrick.current_room = other_room
             print(f"derrick's current room: {derrick.current_room}")
+
